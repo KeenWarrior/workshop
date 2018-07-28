@@ -37,6 +37,10 @@ public class MainActivity extends Activity {
 
         images = new ArrayList<>();  // create empty list
 
+        images.add("http://rabbits.life/wp-content/uploads/2013/06/Background-rabbits-life-little.jpg");
+        images.add("https://caldervets.co.uk/wp-content/uploads/2016/06/Dental-Hygiene-For-Rabbits-970x546.jpg");
+        images.add("http://112vet.ro/wp-content/uploads/112vet-Mixomatoza-.jpg");
+
         textView = findViewById(R.id.text);
         editText = findViewById(R.id.edit);
         submitButton = findViewById(R.id.submit);
