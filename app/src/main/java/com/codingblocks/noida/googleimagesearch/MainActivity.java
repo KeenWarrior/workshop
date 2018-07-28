@@ -6,14 +6,28 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
     private TextView textView;
     private EditText editText;
     private Button submitButton;
+    private ImageView imageView;
+
+
+    private Button left;
+    private Button right;
+
+    private ArrayList<String> images;   // create list ref
+
+    private int index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +35,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         Log.d("testing", "onCreate");
 
+        images = new ArrayList<>();  // create empty list
+
         textView = findViewById(R.id.text);
         editText = findViewById(R.id.edit);
         submitButton = findViewById(R.id.submit);
+        imageView = findViewById(R.id.image);
+
+        left = findViewById(R.id.left);
+        right = findViewById(R.id.right);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +53,28 @@ public class MainActivity extends Activity {
                 String line = editText.getText().toString();
                 textView.setText(line);
 
+            }
+        });
+
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (index > 0){
+                    index--;
+
+                    Picasso.get().load(images.get(index)).into(imageView);
+                }
+            }
+        });
+
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (index < images.size() - 1){
+                    index++;
+
+                    Picasso.get().load(images.get(index)).into(imageView);
+                }
             }
         });
     }
